@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://atlas.hashicorp.com/search.
+  config.vm.define "pg_barman" do |pg_barman|
+    pg_barman.vm.box = "ubuntu/xenial64"
+    pg_barman.vm.hostname = "pg-barman"
+    pg_barman.vm.network "private_network", ip: "10.0.3.10"
+  end
+
+  config.vm.define "pg_slave" do |pg_slave|
+    pg_slave.vm.box = "ubuntu/xenial64"
+    pg_slave.vm.hostname = "pg-slave"
+    pg_slave.vm.network "private_network", ip: "10.0.3.11"
+  end
+
+  config.vm.define "pg_master" do |pg_master|
+    pg_master.vm.box = "ubuntu/xenial64"
+    pg_master.vm.hostname = "pg-master"
+    pg_master.vm.network "private_network", ip: "10.0.3.12"
+  end
+end
